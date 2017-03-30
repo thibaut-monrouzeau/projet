@@ -15,5 +15,16 @@
   <%= @location.longitude %>
 </p>
 
+<p>
+   <strong>Current weather :</strong>
+   <%= @weatherSummary %>
+ </p>
+ 
+ <p>
+   <strong>Current temperature :</strong>
+   <%= @weatherTemperature%>
+   <%= '%.2f' % @weatherTemperature %> &deg;C
+ </p>
+
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>
