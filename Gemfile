@@ -42,3 +42,4 @@ gem 'spring',        group: :development
 gem 'vcr', '~> 3.0', '>= 3.0.3', group: :test
 
 gem 'nominatim', '~> 0.0.6'
+gem 'forecast_io', '~> 2.0', '>= 2.0.1'
