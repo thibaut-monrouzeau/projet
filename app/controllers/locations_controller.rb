@@ -12,25 +12,26 @@ class LocationsController < ApplicationController
   def show
      forecast = ForecastIO.forecast(@location.latitude, @location.longitude)
     
-     weatherFetched = false
-     temperatureFetched = false
+     weather = false
+     temperature = false
      if forecast
        todayForecast = forecast.currently
        if todayForecast
-         if todayForecast.icon
-           @weatherIconName = todayForecast.icon
-           weatherFetched = true
+         if todayForecast.summary
+           @weatherSummary = todayForecast.summary
+           weather = true
          end
          if todayForecast.temperature
-           @weatherTemperature = toCelsus(todayForecast.temperature)
-           temperatureFetched = true
+           @weather_io = toCelsus(todayForecast.temperature)
+           @weatherTemperature = weather_io.round(2);
+           temperature = true
          end
        end
      end
-     if !weatherFetched
-       @weatherIconName = nil
+     if !weather
+       @weatherSummary = nil
      end
-     if !temperatureFetched
+     if !temperature
        @weatherTemperature = nil
      end
   end
