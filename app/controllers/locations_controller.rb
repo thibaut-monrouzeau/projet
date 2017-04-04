@@ -11,26 +11,26 @@ class LocationsController < ApplicationController
   # GET /locations/1.json
   def show
      forecast = ForecastIO.forecast(@location.latitude, @location.longitude)
-     weatherOk = false
-     temperatureOk = false
+     weatherFetched = false
+     temperatureFetched = false
      if forecast
        todayForecast = forecast.currently
        if todayForecast
          if todayForecast.summary
            @weatherSummary = todayForecast.summary
-           weatherOk = true
+           weatherFetched = true
          end
          if todayForecast.temperature
            @weatherTemperature = toCelsus(todayForecast.temperature)
-           temperatureOk = true
+           temperatureFetched = true
          end
        end
      end
-     if !weatherOk
-       @weatherSummary = "Unavailable"
+     if !weatherFetched
+       @weatherSummary = nil
      end
-     if !temperatureOk
-       @weatherTemperature = "Unavailable"
+     if !temperatureFetched
+       @weatherTemperature = nil
      end
   end
 
