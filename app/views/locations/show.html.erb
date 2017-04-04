@@ -17,8 +17,8 @@
 
 <p>
    <strong>Current weather :</strong>
-   <% if @weatherSummary %>
-    <%= @weatherSummary %>"></i>
+   <% if @weatherIconName %>
+    <i class="wi wi-forecast-io-<%= @weatherIconName %>"></i>
    <% else %>
      Unvailable
    <% end %> 
