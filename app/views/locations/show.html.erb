@@ -16,13 +16,8 @@
 </p>
 
 <p>
-   <strong>Current weather :</strong>
-   <%= @weatherSummary %> 
- </p>
- 
- <p>
-   <strong>Current temperature :</strong>
-   <%= @weatherTemperature %> &deg;C
+   <strong>Meteo :</strong>
+   <%= @meteo.summary %> 
  </p>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |

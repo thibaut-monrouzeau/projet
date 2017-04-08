@@ -1,5 +1,9 @@
 class Location < ActiveRecord::Base
   before_validation :geocode
+    
+  def meteo 
+     ForecastIO.forecast(self.latitude, self.longitude).currently
+  end
   
   private
   def geocode
@@ -9,5 +13,5 @@ class Location < ActiveRecord::Base
       self.latitude = place.latitude
       self.longitude = place.longitude
     end
-  end  
+  end 
 end

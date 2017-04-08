@@ -10,30 +10,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
-     forecast = ForecastIO.forecast(@location.latitude, @location.longitude)
-    
-     weather = false
-     temperature = false
-     if forecast
-       todayForecast = forecast.currently
-       if todayForecast
-         if todayForecast.summary
-           @weatherSummary = todayForecast.summary
-           weather = true
-         end
-         if todayForecast.temperature
-           weather_io = toCelsus(todayForecast.temperature)
-           @weatherTemperature = weather_io.round(2);
-           temperature = true
-         end
-       end
-     end
-     if !weather
-       @weatherSummary = nil
-     end
-     if !temperature
-       @weatherTemperature = nil
-     end
+    @meteo.summary
   end
 
   # GET /locations/new
@@ -90,15 +67,6 @@ class LocationsController < ApplicationController
     def set_location
       @location = Location.find(params[:id])
     end
-
-   # Convert Fahrenheit temperature to Celsus temperature
-     def toCelsus(fahrenheitTemperature)
-       if fahrenheitTemperature
-         return (fahrenheitTemperature - 32.0) * 5.0 / 9.0
-       else
-         return nil
-       end
-     end
   
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
