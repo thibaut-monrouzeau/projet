@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
-    @meteo.summary
+    @meteo = @location.meteo
   end
 
   # GET /locations/new
